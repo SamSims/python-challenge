@@ -36,6 +36,7 @@ with open(file_to_load,'r') as financial_data:
     total_net = int(start[1])
     total_months +=1
     PreviousMonth = int(start[1])
+   # total_change = int(start[1])
     # Track the total and net change
 
 
@@ -62,12 +63,12 @@ with open(file_to_load,'r') as financial_data:
         PreviousMonth = int(row[1])
 
 # Calculate the average net change across the months
-average_change = total_change/total_months
+average_change = round(total_change/(total_months-1),2)
 
 # Generate the output summary
-labels = ["Total Months: ","Total: ","Average Change: ","Greatest Increase in Profits: ","Greatest Decrease in Profits: "]
-data = [total_months,"${:,.2f}".format(total_net),"${:,.2f}".format(average_change), [{GreatestInDate},"${:,.2f}".format(GreatestInTotal)],[{GreatestDeDate},"${:,.2f}".format(GreatestDeTotal)]]
-output = zip(labels,data)
+#labels = ["Total Months: ","Total: ","Average Change: ","Greatest Increase in Profits: ","Greatest Decrease in Profits: "]
+#data = [total_months,"${:,.2f}".format(total_net),"${:,.2f}".format(average_change), [{GreatestInDate},"${:,.2f}".format(GreatestInTotal)],[{GreatestDeDate},"${:,.2f}".format(GreatestDeTotal)]]
+output = f"Financial Analysis\n\nTotalMonths: {total_months}\n\nTotal: ${total_net}\n\nAverage Change: ${average_change}\n\nGreatest Increase in Profits: {GreatestInDate} (${GreatestInTotal})\n\nGreatest Decrease in Profits: {GreatestDeDate} (${GreatestDeTotal})"
 # Print the output
 print("Financial Analysis")
 print()
@@ -79,7 +80,7 @@ print(f"Total: ${total_net}")
 print()
 print(f"Average Change: ${average_change}")
 print()
-print(f"Greatest Increase in Profits: {GreatestInDate} (${GreatestInTotal})")
+print(f"Greatest Increase in Profits: {GreatestInDate} (${GreatestInTotal}")
 print()
 print(f"Greatest Decrease in Profits: {GreatestDeDate} (${GreatestDeTotal})")
 print()

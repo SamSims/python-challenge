@@ -52,6 +52,7 @@ with open(file_to_load) as election_data:
 # Open a text file to save the output
 with open(file_to_output, "w") as txt_file:
 
+    print()
     print("Election Results")
     print()
     print("-"*50)
@@ -62,12 +63,13 @@ with open(file_to_output, "w") as txt_file:
     print("-"*50)
     print()
     # Write the total vote count to the text file
-    txt_file.write(["Total Votes",total_votes])
+    # ["Total Votes",total_votes]
+    txt_file.write(f"Election Results\nTotalVotes: {total_votes}\n")
 
     # Loop through the candidates to determine vote percentages and identify the winner
     for x in range(0,len(candidates)):
         # Get the vote count and calculate the percentage
-        percentOfVotes[x] = votesperCandidate[x]/total_votes*100
+        percentOfVotes[x] = round(votesperCandidate[x]/total_votes*100,3)
 
         # Update the winning candidate if this one has more votes
         if(votesperCandidate[x]>winningvotes):
@@ -76,6 +78,7 @@ with open(file_to_output, "w") as txt_file:
         # Print and save each candidate's vote count and percentage
         print(f"{candidates[x]}: {percentOfVotes[x]}% ({votesperCandidate[x]})")
         print()
+        txt_file.write(f"{candidates[x]}: {percentOfVotes[x]}% ({votesperCandidate[x]})\n")
 
     # Generate and print the winning candidate summary
     print("-"*50)
@@ -85,5 +88,7 @@ with open(file_to_output, "w") as txt_file:
     print("-"*50)
     
     # Save the winning candidate summary to the text file
-    txt_file.write(zip(candidates,percentOfVotes,votesperCandidate))
-    txt_file.write(["Winner",candidatewin])
+
+
+   # txt_file.write(zip(candidates,percentOfVotes,votesperCandidate))
+    txt_file.write(f"\nWinner: {candidatewin}\n")
