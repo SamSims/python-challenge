@@ -16,14 +16,11 @@ GreatestInTotal = 0 #greatest increase total
 GreatestDeDate = "" #month of greatest decrease
 GreatestDeTotal = 0 #greatest decrease total
 CurrentPL = 0
-PreviousMonth = 0
+PreviousMonth = 0   #store previous months amount to use with change
 # Add more variables to track other necessary financial data
 
-print(os.getcwd())
-print()
-print()
-print(file_to_load)
-print("attempting to open file")
+
+
 # Open and read the csv
 with open(file_to_load,'r') as financial_data:
     reader = csv.reader(financial_data)
@@ -32,12 +29,13 @@ with open(file_to_load,'r') as financial_data:
     header = next(reader)
 
     # Extract first row to avoid appending to net_change_list
+    # Track the total and net change
     start = next(reader)
     total_net = int(start[1])
     total_months +=1
     PreviousMonth = int(start[1])
-   # total_change = int(start[1])
-    # Track the total and net change
+
+
 
 
     # Process each row of data

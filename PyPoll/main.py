@@ -76,6 +76,7 @@ with open(file_to_output, "w") as txt_file:
             candidatewin=candidates[x]
             winningvotes = votesperCandidate[x]
         # Print and save each candidate's vote count and percentage
+        # Save the winning candidate summary to the text file
         print(f"{candidates[x]}: {percentOfVotes[x]}% ({votesperCandidate[x]})")
         print()
         txt_file.write(f"{candidates[x]}: {percentOfVotes[x]}% ({votesperCandidate[x]})\n")
@@ -87,8 +88,8 @@ with open(file_to_output, "w") as txt_file:
     print()
     print("-"*50)
     
-    # Save the winning candidate summary to the text file
 
 
-   # txt_file.write(zip(candidates,percentOfVotes,votesperCandidate))
+
+   #add winner info to file
     txt_file.write(f"\nWinner: {candidatewin}\n")
